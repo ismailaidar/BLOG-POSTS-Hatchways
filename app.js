@@ -1,8 +1,18 @@
 const express = require("express");
 const morgan = require("morgan");
-
+const mysql = require('mysql2');
+require('dotenv').config()
 class ApplicationServer {
     constructor() {
+        // create the connection to database
+        this.connection = mysql.createConnection({
+            host: process.env.DB_HOST,
+            user: process.env.DB_USERNAME,
+            password: process.env.DB_PASSWORD,
+            database: process.env.DB_NAME,
+            port: process.env.DB_PORT
+        });
+
 		//Express application object
 		this.app = express();
 		//Method that initialized the express framework.
@@ -16,7 +26,7 @@ class ApplicationServer {
 	}
 
     initExpress() {
-		this.app.set("port", 8000);
+		this.app.set("port", process.env.APP_PORT);
 	}
 
     initExpressMiddleWare() {
@@ -26,7 +36,7 @@ class ApplicationServer {
 	}
 
     initControllers() {
-        require("./constrollers/dummyController.js")(this.app);
+        require("./constrollers/dummyController.js")(this.app, this.connection);
 	}
 
     start() {

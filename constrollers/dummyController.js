@@ -1,6 +1,7 @@
 class DummyController {
-    constructor(app) {
+    constructor(app, connection) {
         this.app = app;
+        this.connection = connection;
         this.dummyGet();
         this.dummyGet2();
     }
