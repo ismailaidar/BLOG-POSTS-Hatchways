@@ -1,7 +1,6 @@
 class DummyController {
-    constructor(app, connection) {
+    constructor(app) {
         this.app = app;
-        this.connection = connection;
         this.ping();
     }
 
