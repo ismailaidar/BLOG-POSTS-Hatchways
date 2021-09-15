@@ -36,7 +36,8 @@ class ApplicationServer {
 	}
 
     initControllers() {
-        require("./constrollers/dummyController.js")(this.app, this.connection);
+        require("./controllers/dummyController.js")(this.app, this.connection);
+        require("./controllers/postsController.js")(this.app);
 	}
 
     start() {
